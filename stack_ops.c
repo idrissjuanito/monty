@@ -14,9 +14,9 @@ void push_to_stack(stack_t **stack, unsigned int line_num)
 	char *param;
 
 	param = strtok(NULL, "\t\n ");
-	if (!param && isnum(param) == -1)
+	if (!param || isnum(param) == -1)
 	{
-		fprintf(stderr, "L%d: usage: push integer", line_num);
+		fprintf(stderr, "L%d: usage: push integer\n", line_num);
 		exit_on_error(stack);
 	}
 	new = malloc(sizeof(stack_t));
@@ -39,7 +39,7 @@ void push_to_stack(stack_t **stack, unsigned int line_num)
  *
  * Return: nothing
  */
-void print_stack(stack_t **stack, __attribute__ ((unused))unsigned int line_num)
+void print_stack(stack_t **stack, __attribute__((unused))unsigned int line_num)
 {
 	stack_t *tmp = *stack;
 
