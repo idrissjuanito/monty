@@ -1,6 +1,5 @@
 #include "monty.h"
 
-extern int val;
 /**
  * push_to_stack - adds a new stack element
  *
@@ -44,11 +43,11 @@ void print_stack(stack_t **stack, unsigned int line_num)
 {
 	stack_t *tmp = *stack;
 
-	if (!tmp)
-	{
-		fprintf(stderr, "The stack is empty %d\n", line_num);
-		exit_on_error(stack);
-	}
+	/*if (!tmp)*/
+	/*{*/
+		/*fprintf(stderr, "The stack is empty %d\n", line_num);*/
+		/*exit_on_error(stack);*/
+	/*}*/
 	while (tmp)
 	{
 		printf("%d\n", tmp->n);
