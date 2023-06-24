@@ -90,6 +90,7 @@ void rotr_stack(stack_t **stack, __attribute__((unused))unsigned int line_num)
 	{
 		tmp->prev->next = NULL;
 		tmp->next = *stack;
+		tmp->next->prev = tmp;
 		tmp->prev = NULL;
 		*stack = tmp;
 	}
