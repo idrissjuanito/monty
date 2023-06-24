@@ -117,7 +117,8 @@ void swap_stack(stack_t **stack, unsigned int line_num)
 	}
 	tmp_next = tmp->next;
 	tmp->next = tmp_next->next;
-	tmp_next->next->prev = tmp;
+	if (tmp_next->next)
+		tmp_next->next->prev = tmp;
 	tmp->prev = tmp_next;
 	tmp_next->prev = NULL;
 	tmp_next->next = tmp;
