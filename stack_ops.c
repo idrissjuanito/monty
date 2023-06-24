@@ -97,3 +97,29 @@ void pop_stack(stack_t **stack, unsigned int line_num)
 		tmp->next->prev = NULL;
 	free(tmp);
 }
+
+/**
+ * swap_stack - prints the top elements in a stack
+ *
+ * @stack: stack to print
+ * @line_num: line number of instruction to print
+ *
+ * Return: nothing
+ */
+void swap_stack(stack_t **stack, unsigned int line_num)
+{
+	stack_t *tmp = *stack, *tmp_next;
+
+	if (!tmp || !tmp->next)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_num);
+		exit_on_error(stack);
+	}
+	tmp_next = tmp->next;
+	tmp->next = tmp_next->next;
+	tmp_next->next->prev = tmp;
+	tmp->prev = tmp_next;
+	tmp_next->prev = NULL;
+	tmp_next->next = tmp;
+	*stack = tmp_next;
+}
