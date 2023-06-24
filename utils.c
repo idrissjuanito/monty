@@ -30,7 +30,8 @@ stack_func op_func(char *opcode)
 	int i = 0;
 	instruction_t inst[] = {
 		{"push", push_to_stack},
-		{"pall", print_stack},
+		{"pall", pall_stack},
+		{"pint", pint_stack},
 		{NULL, NULL}
 	};
 	while (inst[i].f && strcmp(opcode, inst[i].opcode) != 0)

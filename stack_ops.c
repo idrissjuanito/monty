@@ -32,14 +32,14 @@ void push_to_stack(stack_t **stack, unsigned int line_num)
 }
 
 /**
- * print_stack - print elements in a stack from top
+ * pall_stack - print elements in a stack from top
  *
  * @stack: stack to print
  * @line_num: line number of instruction to print
  *
  * Return: nothing
  */
-void print_stack(stack_t **stack, __attribute__((unused))unsigned int line_num)
+void pall_stack(stack_t **stack, __attribute__((unused))unsigned int line_num)
 {
 	stack_t *tmp = *stack;
 
@@ -53,4 +53,24 @@ void print_stack(stack_t **stack, __attribute__((unused))unsigned int line_num)
 		printf("%d\n", tmp->n);
 		tmp = tmp->next;
 	}
+}
+
+/**
+ * pint_stack - prints the top elements in a stack
+ *
+ * @stack: stack to print
+ * @line_num: line number of instruction to print
+ *
+ * Return: nothing
+ */
+void pint_stack(stack_t **stack, unsigned int line_num)
+{
+	stack_t *tmp = *stack;
+
+	if (!tmp)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty", line_num);
+		exit_on_error(stack);
+	}
+	printf("%d\n", tmp->n);
 }
