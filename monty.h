@@ -38,6 +38,7 @@ char *parse_ln(char *line);
 void push_to_stack(stack_t **stack, unsigned int line_num);
 void pall_stack(stack_t **stack, unsigned int line_num);
 void pint_stack(stack_t **stack, unsigned int line_num);
+void pop_stack(stack_t **stack, unsigned int line_num);
 stack_func op_func(char *opcode);
 void run_instructions(FILE *fl, stack_t **stack);
 void free_dlistint(stack_t *head);

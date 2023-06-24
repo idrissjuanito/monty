@@ -74,3 +74,25 @@ void pint_stack(stack_t **stack, unsigned int line_num)
 	}
 	printf("%d\n", tmp->n);
 }
+
+/**
+ * pop_stack - prints the top elements in a stack
+ *
+ * @stack: stack to print
+ * @line_num: line number of instruction to print
+ *
+ * Return: nothing
+ */
+void pop_stack(stack_t **stack, unsigned int line_num)
+{
+	stack_t *tmp = *stack;
+
+	if (!tmp)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_num);
+		exit_on_error(stack);
+	}
+	*stack = tmp->next;
+	tmp->next->prev = NULL;
+	free(tmp);
+}
