@@ -39,11 +39,6 @@ void sub_stack(stack_t **stack, unsigned int line_num)
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_num);
 		exit_on_error(stack);
 	}
-	if (tmp->n == 0)
-	{
-		fprintf(stderr, "L%d: Division by zero\n", line_num);
-		exit_on_error(stack);
-	}
 	tmp_next = tmp->next;
 	tmp_next->n -= tmp->n;
 
@@ -65,6 +60,11 @@ void div_stack(stack_t **stack, unsigned int line_num)
 	if (!tmp || !tmp->next)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_num);
+		exit_on_error(stack);
+	}
+	if (tmp->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_num);
 		exit_on_error(stack);
 	}
 	tmp_next = tmp->next;
@@ -115,7 +115,7 @@ void mod_stack(stack_t **stack, unsigned int line_num)
 	}
 	if (tmp->n == 0)
 	{
-		fprintf(stderr, "L%d: Division by zero\n", line_num);
+		fprintf(stderr, "L%d: division by zero\n", line_num);
 		exit_on_error(stack);
 	}
 	tmp_next = tmp->next;
