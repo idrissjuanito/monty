@@ -41,6 +41,8 @@ stack_func op_func(char *opcode)
 		{"mod", mod_stack},
 		{"pchar", pchar_stack},
 		{"pstr", pstr_stack},
+		{"rotl", rotl_stack},
+		{"rotr", rotl_stack},
 		{NULL, NULL}
 	};
 	while (inst[i].f && strcmp(opcode, inst[i].opcode) != 0)

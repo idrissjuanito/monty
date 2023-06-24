@@ -45,3 +45,52 @@ void pstr_stack(stack_t **stack, __attribute__((unused))unsigned int line_num)
 	}
 	printf("\n");
 }
+
+/**
+ * rotl_stack - the first element of the stack becomes the last
+ *
+ * @stack: the stack
+ * @line_num: the line number of the instruction
+ *
+ * Return: nothing
+ */
+void rotl_stack(stack_t **stack, unsigned int line_num)
+{
+	stack_t *tmp = *stack, *second;
+
+	if (tmp)
+		second = tmp->next;
+	while (tmp && tmp->next)
+		tmp = tmp->next;
+	if (tmp && second)
+	{
+		tmp->next = *stack;
+		tmp->next->prev = tmp;
+		tmp->next->next = NULL;
+		*stack = second;
+		second->prev = NULL;
+	}
+}
+
+/**
+ * rotr_stack - the last element of the stack becomes the top
+ *
+ * @stack: the stack
+ * @line_num: the line number of the instruction
+ *
+ * Return: nothing
+ */
+void rotr_stack(stack_t **stack, unsigned int line_num)
+{
+	stack_t *tmp = *stack;
+
+	while (tmp && tmp->next)
+		tmp = tmp->next;
+	if (tmp && tmp->prev)
+	{
+		tmp->prev->next = NULL;
+		tmp->next = *stack;
+		tmp->prev = NULL;
+		*stack = tmp;
+	}
+}
