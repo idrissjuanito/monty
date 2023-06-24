@@ -32,7 +32,7 @@ void pchar_stack(stack_t **stack, unsigned int line_num)
  *
  * Return: nothing
  */
-void pstr_stack(stack_t **stack, unsigned int line_num)
+void pstr_stack(stack_t **stack, __attribute__((unused))unsigned int line_num)
 {
 	stack_t *tmp = *stack;
 
