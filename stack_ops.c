@@ -93,6 +93,7 @@ void pop_stack(stack_t **stack, unsigned int line_num)
 		exit_on_error(stack);
 	}
 	*stack = tmp->next;
-	tmp->next->prev = NULL;
+	if (tmp->next)
+		tmp->next->prev = NULL;
 	free(tmp);
 }
