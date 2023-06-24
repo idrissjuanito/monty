@@ -46,6 +46,7 @@ void sub_stack(stack_t **stack, unsigned int line_num);
 void div_stack(stack_t **stack, unsigned int line_num);
 void mul_stack(stack_t **stack, unsigned int line_num);
 void pchar_stack(stack_t **stack, unsigned int line_num);
+void pstr_stack(stack_t **stack, unsigned int line_num);
 stack_func op_func(char *opcode);
 void run_instructions(FILE *fl, stack_t **stack);
 void free_dlistint(stack_t *head);
