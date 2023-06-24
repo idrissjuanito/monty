@@ -21,7 +21,7 @@ void run_instructions(FILE *fl, stack_t **stack)
 		{
 			line_num++;
 			opcode = parse_ln(line);
-			if (!opcode || strcmp(opcode, "nop") == 0 || line[0] == '#')
+			if (!opcode || strcmp(opcode, "nop") == 0 || opcode[0] == '#')
 				continue;
 			f = op_func(opcode);
 			if (!f)
