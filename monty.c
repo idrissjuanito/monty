@@ -20,6 +20,8 @@ void run_instructions(FILE *fl, stack_t **stack)
 		while ((chr_read = getline(&line, &n, fl)) != -1)
 		{
 			line_num++;
+			if (*line == '#')
+				continue;
 			opcode = parse_ln(line);
 			if (!opcode || strcmp(opcode, "nop") == 0)
 				continue;
