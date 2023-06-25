@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+int mode = 0;
 /**
  * main - entry point of program
  *

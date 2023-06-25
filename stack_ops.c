@@ -25,10 +25,11 @@ void push_to_stack(stack_t **stack, unsigned int line_num)
 		fprintf(stderr, "malloc failed %d\n", line_num);
 		exit_on_error(stack);
 	}
-	new->next = *stack;
-	new->prev = NULL;
 	new->n = atoi(param);
-	*stack = new;
+	if (mode == 0)
+		add_dnodeint(stack, new);
+	if (mode == 1)
+		add_dnodeint_end(stack, new);
 }
 
 /**

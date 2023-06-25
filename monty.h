@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 
+extern int mode;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -20,6 +21,7 @@ typedef struct stack_s
 		struct stack_s *prev;
 		struct stack_s *next;
 } stack_t;
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -35,7 +37,9 @@ typedef struct instruction_s
 } instruction_t;
 typedef void (*stack_func)(stack_t **, unsigned int);
 char *parse_ln(char *line);
+stack_t *add_dnodeint(stack_t **head, stack_t *node);
 void push_to_stack(stack_t **stack, unsigned int line_num);
+stack_t *add_dnodeint_end(stack_t **head, stack_t *node);
 void pall_stack(stack_t **stack, unsigned int line_num);
 void pint_stack(stack_t **stack, unsigned int line_num);
 void pop_stack(stack_t **stack, unsigned int line_num);
@@ -49,6 +53,10 @@ void pchar_stack(stack_t **stack, unsigned int line_num);
 void pstr_stack(stack_t **stack, unsigned int line_num);
 void rotl_stack(stack_t **stack, unsigned int line_num);
 void rotr_stack(stack_t **stack, unsigned int line_num);
+void stack(__attribute__ ((unused)) stack_t **stack,
+					    __attribute__ ((unused)) unsigned int line_num);
+void queue(__attribute__ ((unused)) stack_t **stack,
+					    __attribute__ ((unused)) unsigned int line_num);
 stack_func op_func(char *opcode);
 void run_instructions(FILE *fl, stack_t **stack);
 void free_dlistint(stack_t *head);

@@ -1,21 +1,61 @@
 #include "monty.h"
-#include <ctype.h>
+
 
 /**
- * parse_ln - parses an instruction line
+ * add_dnodeint - adds a node in a stack
  *
- * @line: the line to parse
+ * @head: pointer to pointer of the list head
+ * @new: the node to add
  *
- * Return: opcode or NULL if failed
+ * Return: pointer to the element or NULL
  */
-char *parse_ln(char *line)
+stack_t *add_dnodeint(stack_t **head, stack_t *new)
 {
-		char *opcode;
+	stack_t *current;
 
-		opcode = strtok(line, "\t\n ");
-		if (!opcode)
-			return (NULL);
-		return (opcode);
+	if (!head)
+		return (NULL);
+	new->prev = NULL;
+	current = *head;
+	if (!current)
+		new->next = NULL;
+	else
+	{
+		new->next = current;
+		current->prev = new;
+	}
+	*head = new;
+	return (new);
+}
+
+
+/**
+ * add_dnodeint_end- adds a node at the end of a queue
+ *
+ * @head: pointer to pointer of the list head
+ * @new: the pointer to the newly created node
+ *
+ * Return: pointer to the element or NULL
+ */
+stack_t *add_dnodeint_end(stack_t **head, stack_t *new)
+{
+	stack_t *current;
+
+	if (!head)
+		return (NULL);
+	current = *head;
+	new->next = NULL;
+	if (!current)
+	{
+		new->prev = NULL;
+		*head = new;
+		return (new);
+	}
+	while (current->next)
+		current = current->next;
+	new->prev = current;
+	current->next = new;
+	return (new);
 }
 
 /**
@@ -43,6 +83,8 @@ stack_func op_func(char *opcode)
 		{"pstr", pstr_stack},
 		{"rotl", rotl_stack},
 		{"rotr", rotl_stack},
+		{"stack", stack},
+		{"queue", queue},
 		{NULL, NULL}
 	};
 	while (inst[i].f && strcmp(opcode, inst[i].opcode) != 0)
@@ -80,30 +122,4 @@ void free_dlistint(stack_t *head)
 		free(current);
 		current = head;
 	}
-}
-
-/**
- * isnum - checks if a string is a valid number
- *
- * @param: string to check
- *
- * Return: -1 on failure and 0 on success
- */
-int isnum(char *param)
-{
-	char *str = param;
-	unsigned int i;
-
-	if (!str)
-		return (-1);
-	i = 0;
-	if (str[i] == '-')
-		i++;
-	while (str[i] != '\0')
-	{
-		if (!isdigit(str[i]))
-			return (-1);
-		i++;
-	}
-	return (0);
 }
